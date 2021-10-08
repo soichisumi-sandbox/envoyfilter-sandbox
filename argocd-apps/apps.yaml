@@ -13,7 +13,7 @@ spec:
     repoURL: https://github.com/soichisumi-sandbox/envoyfilter-sandbox.git
     targetRevision: HEAD
     helm:
-      version: "2"
+      version: "v2"
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
@@ -36,7 +36,7 @@ spec:
     repoURL: https://github.com/soichisumi-sandbox/envoyfilter-sandbox.git
     targetRevision: HEAD
     helm:
-      version: "2"
+      version: "v2"
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
