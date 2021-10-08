@@ -12,6 +12,8 @@ spec:
     path: istio-helm/
     repoURL: https://github.com/soichisumi-sandbox/envoyfilter-sandbox.git
     targetRevision: HEAD
+    helm:
+      version: "2"
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
@@ -33,6 +35,8 @@ spec:
     path: istio-init-helm/
     repoURL: https://github.com/soichisumi-sandbox/envoyfilter-sandbox.git
     targetRevision: HEAD
+    helm:
+      version: "2"
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
