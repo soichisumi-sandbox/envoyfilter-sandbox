@@ -1,7 +1,7 @@
 argo-cd:
   server:
     configEnabled: true
-    additionalApplications: 
+    additionalApplications:
       - name: argocd
         namespace: argocd
         destination:
@@ -13,14 +13,13 @@ argo-cd:
             version: v3
             valueFiles:
             - values.yaml
-            - ../values-override.yaml
-          path: argocd-install/argo-cd
-          repoURL: https://github.com/kurtburak/argocd.git
+          path: argocd-install
+          repoURL: https://github.com/soichisumi-sandbox/envoyfilter-sandbox.git
           targetRevision: HEAD
         syncPolicy:
           syncOptions:
           - CreateNamespace=true
-      - name: argocd-apps
+      - name: apps
         namespace: argocd
         destination:
           namespace: argocd
@@ -28,7 +27,7 @@ argo-cd:
         project: argocd
         source:
           path: argocd-apps
-          repoURL: https://github.com/kurtburak/argocd.git
+          repoURL: https://github.com/soichisumi-sandbox/envoyfilter-sandbox.git
           targetRevision: HEAD
           directory:
             recurse: true
@@ -45,7 +44,7 @@ argo-cd:
         project: argocd
         source:
           path: argocd-appprojects
-          repoURL: https://github.com/kurtburak/argocd.git
+          repoURL: https://github.com/soichisumi-sandbox/envoyfilter-sandbox.git
           targetRevision: HEAD
           directory:
             recurse: true
@@ -64,6 +63,21 @@ argo-cd:
       - '*'
       destinations:
       - namespace: argocd
+        server: https://kubernetes.default.svc
+      clusterResourceWhitelist:
+      - group: '*'
+        kind: '*'
+      orphanedResources:
+        warn: false
+    - name: istio
+      namespace: istio-system
+      additionalLabels: {}
+      additionalAnnotations: {}
+      description: Istio
+      sourceRepos:
+      - '*'
+      destinations:
+      - namespace: istio-system
         server: https://kubernetes.default.svc
       clusterResourceWhitelist:
       - group: '*'

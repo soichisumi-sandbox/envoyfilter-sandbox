@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio
+  namespace: argocd
+spec:
+  destination:
+    namespace: istio-system
+    server: https://kubernetes.default.svc
+  project: istio
+  source:
+    path: istio-helm/
+    repoURL: https://github.com/soichisumi-sandbox/envoyfilter-sandbox.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-init
+  namespace: argocd
+spec:
+  destination:
+    namespace: istio-system
+    server: https://kubernetes.default.svc
+  project: istio
+  source:
+    path: istio-helm-init/
+    repoURL: https://github.com/soichisumi-sandbox/envoyfilter-sandbox.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
