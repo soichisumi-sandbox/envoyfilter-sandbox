@@ -30,7 +30,7 @@ spec:
     server: https://kubernetes.default.svc
   project: istio
   source:
-    path: istio-helm-init/
+    path: istio-init-helm/
     repoURL: https://github.com/soichisumi-sandbox/envoyfilter-sandbox.git
     targetRevision: HEAD
   syncPolicy:
