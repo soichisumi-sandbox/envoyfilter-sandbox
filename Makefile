@@ -13,6 +13,9 @@ cluster-remove:
 install-argocd:
 	helm install argocd ./argocd-install --namespace=argocd --create-namespace -f ./argocd-install/values.yaml
 
+upgrade-argocd:
+	helm upgrade argocd ./argocd-install --namespace=argocd --create-namespace -f ./argocd-install/values.yaml
+
 portforward-argocd:
 	kubectl port-forward svc/argocd-server -n argocd 8080:80
 
