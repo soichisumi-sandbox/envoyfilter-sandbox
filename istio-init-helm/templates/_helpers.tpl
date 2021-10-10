@@ -49,14 +49,3 @@ Selector labels
 app.kubernetes.io/name: {{ include "istio-helm.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "istio-helm.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "istio-helm.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}
