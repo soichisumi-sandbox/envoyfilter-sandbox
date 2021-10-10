@@ -26,3 +26,8 @@ rollout-all:
 # kubectl -n NAMESPACE rollout restart deploy
 	kubectl -n default rollout restart deploy
 
+download-istio:
+	wget https://github.com/istio/istio/releases/download/1.2.10/istio-1.2.10-linux.tar.gz
+	tar -xvf istio-1.2.10-linux.tar.gz
+	rm istio-1.2.10-linux.tar.gz
+
