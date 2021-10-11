@@ -1,1 +1,3 @@
-
+istio-init:
+  certmanager:
+    enabled: true
