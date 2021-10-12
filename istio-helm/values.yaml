@@ -1,0 +1,6 @@
+istio:
+  gateways:
+    enabled: true
+    istio-ingressgateway:
+      enabled: true
+      type: NodePort
