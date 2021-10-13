@@ -1,0 +1,47 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: mock-server-envoyfilter
+  metadata: istio-system
+spec: 
+  workloadSelector:
+    app: istio-ingressgateway
+  filters:
+  - listenerMatch:
+      listenerType: GATEWAY
+    filterName: envoy.lua
+    filterType: HTTP
+    filterConfig:
+      inlineCode: |
+        NUM_TRUSTED_HOPS = 1
+
+        function split(str, ts)
+          if ts == nil then return {} end
+
+          local t = {} ; 
+          i=1
+          for s in string.gmatch(str, "([^"..ts.."]+)") do
+            t[i] = s
+            i = i + 1
+          end
+
+          return t
+        end
+
+        function setRemoteIP(request_handle)
+          local xff = request_handle:headers():get("X-Forwarded-For")
+          local ips = split(string.gsub(xff, " ", ""), ",")
+          local size = table.getn(ips)
+          if size < 1 + NUM_TRUSTED_HOPS + 1 then
+            return
+          end
+          request_handle:headers():replace("X-Custom-External-IP", ips[size - NUM_TRUSTED_HOPS - 1])  -- trusted proxies and source NAT
+        end
+
+        function envoy_on_request(request_handle)
+          setRemoteIP(request_handle)
+          
+          if request_handle:headers():get(":path") == "/" then
+            request_handle:respond({[":status"] = "200"},"ok")
+          end
+        end

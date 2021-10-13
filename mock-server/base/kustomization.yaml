@@ -5,3 +5,4 @@ resources:
 - service.yaml
 - gateway.yaml
 - virtualservice.yaml
+- envoyfilter.yaml

@@ -27,6 +27,8 @@ spec:
   destinations:
   - namespace: default
     server: https://kubernetes.default.svc
+  - namespace: istio-system
+    server: https://kubernetes.default.svc
   orphanedResources:
     warn: false
   sourceRepos:
