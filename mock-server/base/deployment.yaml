@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-mock-server-deployment
+  labels:
+    app: http-mock-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: http-mock-server
+  template:
+    metadata:
+      labels:
+        app: http-mock-server
+    spec:
+      containers:
+      - name: http-mock-server
+        image: soichisumi0/http-mock-server:v0.2.0
+        ports:
+        - containerPort: 3000

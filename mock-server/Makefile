@@ -7,3 +7,4 @@ mockoon-dockernize:
 
 push-dockerhub:
 	docker build -t soichisumi0/mockoon-mockserver:latest .
+	docker push docker.io/soichisumi0/mockoon-mockserver:latest 

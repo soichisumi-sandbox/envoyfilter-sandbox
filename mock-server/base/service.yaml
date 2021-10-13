@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: http-mock-server-service
+spec:
+  selector:
+    app: http-mock-server
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
