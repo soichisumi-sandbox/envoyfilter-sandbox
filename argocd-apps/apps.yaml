@@ -48,7 +48,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: mock-server
-  namespace: default
+  namespace: argocd
 spec:
   destination:
     namespace: default
