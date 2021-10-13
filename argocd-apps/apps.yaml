@@ -55,7 +55,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: mock-server/
+    path: mock-server/base
     repoURL: https://github.com/soichisumi-sandbox/envoyfilter-sandbox.git
     targetRevision: HEAD
   syncPolicy:
