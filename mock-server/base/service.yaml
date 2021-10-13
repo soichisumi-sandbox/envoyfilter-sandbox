@@ -6,6 +6,6 @@ spec:
   selector:
     app: http-mock-server
   ports:
-  - protocol: TCP
+  - name: http
     port: 3000
     targetPort: 3000
